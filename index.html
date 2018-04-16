@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Paint</title>
+    <style>
+        
+/*        Body będzie "papierem"*/
+        body {
+            margin: 0;
+            height: 100vh;
+        }
+
+/*        Tworzymy diva, którym będziemy pisać*/
+        div {
+            background-color: blue;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <script>
+      
+//        div będzie poruszany w przestrzeni x/y - poziom/pion w objekcie document za pomocą metod "clientX i clientY"
+//          kojelny div będzie tworzony tylko przy naciśnieciu myszki - mousedown, przy mouseup - brak reakcji;
+        let active = false;
+        const draw = function(e) {
+            if (active == false) return;
+            const x = e.clientX;
+            const y = e.clientY;
+            const div = document.createElement("div");
+            div.style.top = y + "px";
+            div.style.left = x + "px";
+            document.body.appendChild(div);
+
+        }
+        const drawActive = function() {
+            active = true;
+        }
+        const drawCansel = function() {
+            active = false;
+        }
+              
+        document.body.addEventListener("mousemove", draw);
+        document.body.addEventListener("mousedown", drawActive);
+        document.body.addEventListener("mouseup", drawCansel);
+
+    </script>
+</body>
+
+</html>
